@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Col, Container, Image, Row } from 'react-bootstrap'
 
-const Gallery = ({ urlArray, setModalImg, setShowPictureModal }) => {
+const Gallery = ({ urlArray, setModalImgIdx, setShowPictureModal }) => {
   
-  const handleClick = (url) => {
-    setModalImg(url);
+  const handleClick = (urlIdx) => {
+    setModalImgIdx(urlIdx);
     setShowPictureModal(true);
   }
-
+  
   let rowsArray = [];
   for(let idx = 0; idx < urlArray.length; idx+=3){
     
@@ -15,7 +15,7 @@ const Gallery = ({ urlArray, setModalImg, setShowPictureModal }) => {
       <Row key={idx} xs={3}>
         <Col 
           className='custom-col' 
-          onClick={()=> handleClick(urlArray[idx])} 
+          onClick={()=> handleClick(idx)} 
           style={{
           backgroundImage: `url('${urlArray[idx]}')`
           }} 
@@ -23,7 +23,7 @@ const Gallery = ({ urlArray, setModalImg, setShowPictureModal }) => {
         {urlArray[idx+1] ? 
         <Col 
           className='custom-col' 
-          onClick={()=> handleClick(urlArray[idx+1])} 
+          onClick={()=> handleClick(idx+1)} 
           style={{
           backgroundImage: `url(${urlArray[idx+1]})`
           }} 
@@ -33,7 +33,7 @@ const Gallery = ({ urlArray, setModalImg, setShowPictureModal }) => {
         {urlArray[idx+2] ? 
         <Col 
           className='custom-col' 
-          onClick={()=> handleClick(urlArray[idx+2])} 
+          onClick={()=> handleClick(idx+2)} 
           style={{
           backgroundImage: `url(${urlArray[idx+2]})`
           }} 

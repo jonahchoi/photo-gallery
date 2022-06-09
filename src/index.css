@@ -13,3 +13,19 @@
   font-size: 2rem;
   font-weight: bold;
 }
+.modal-btn {
+  position: absolute;
+  height: 35px;
+  width: 35px;
+  bottom: -35px;
+  right: 10px;
+}
+
+.custom-modal-dialog {
+  width: fit-content;
+  max-width: 65%;
+}
+
+.dropdown-toggle::after{
+  display: none !important;
+}
