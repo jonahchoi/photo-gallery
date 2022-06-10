@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Col, Container, Image, Row } from 'react-bootstrap'
+import React from 'react'
+import { Col, Container, Row } from 'react-bootstrap'
 
 const Gallery = ({ urlArray, setModalImgIdx, setShowPictureModal }) => {
   
@@ -17,7 +17,7 @@ const Gallery = ({ urlArray, setModalImgIdx, setShowPictureModal }) => {
           className='custom-col' 
           onClick={()=> handleClick(idx)} 
           style={{
-          backgroundImage: `url('${urlArray[idx]}')`
+          backgroundImage: `url('${urlArray[idx].url}')`
           }} 
         />
         {urlArray[idx+1] ? 
@@ -25,7 +25,7 @@ const Gallery = ({ urlArray, setModalImgIdx, setShowPictureModal }) => {
           className='custom-col' 
           onClick={()=> handleClick(idx+1)} 
           style={{
-          backgroundImage: `url(${urlArray[idx+1]})`
+          backgroundImage: `url(${urlArray[idx+1].url})`
           }} 
         />
         : ''
@@ -35,7 +35,7 @@ const Gallery = ({ urlArray, setModalImgIdx, setShowPictureModal }) => {
           className='custom-col' 
           onClick={()=> handleClick(idx+2)} 
           style={{
-          backgroundImage: `url(${urlArray[idx+2]})`
+          backgroundImage: `url(${urlArray[idx+2].url})`
           }} 
         />
         : ''
