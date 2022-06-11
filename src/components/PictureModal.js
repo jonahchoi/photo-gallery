@@ -1,12 +1,16 @@
 import { deleteDoc, doc } from 'firebase/firestore';
 import { deleteObject, ref } from 'firebase/storage';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Carousel, Dropdown, Image, Modal } from 'react-bootstrap'
 import { appFirestore, appStorage } from '../firebase/config';
 
-const PictureModal = ({ modalImgIdx, urlArray, showPictureModal, setShowPictureModal }) => {
+const PictureModal = ({ modalImgIdx, urlArray, showPictureModal, setShowPictureModal, setLoadSpinnerStatus }) => {
 
-  const [ carouselIndex, setCarouselIndex ] = useState(0);
+  const [ carouselIndex, setCarouselIndex ] = useState();
+
+  useEffect(()=> {
+    setCarouselIndex(modalImgIdx);
+  }, [modalImgIdx]);
 
   let carouselArray = [];
   if(urlArray){
@@ -22,33 +26,24 @@ const PictureModal = ({ modalImgIdx, urlArray, showPictureModal, setShowPictureM
     }
   }
 
-  /* const handleSlide = () => {
-    console.log(activeIndex);
-  } */
-  
   const closePictureModal = () => {
     setShowPictureModal(false);
   }
 
   const deleteImage = (idx) => {
-    
+
+    setLoadSpinnerStatus('delete');
     const storageRef = ref(appStorage, urlArray[idx].filePath);
-
-    deleteObject(storageRef)
-      .then(()=> {
-        console.log('Image deleted from storage.')
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-
     const docInfo = doc(appFirestore, urlArray[idx].filePath);
-    deleteDoc(docInfo)
+    
+    Promise.all([deleteObject(storageRef), deleteDoc(docInfo)])
       .then(()=> {
-        console.log('Image doc deleted from firestore.')
+        console.log('Image deleted from storage and firestore.');
+        setLoadSpinnerStatus('');
       })
       .catch((err) => {
         console.error(err);
+        setLoadSpinnerStatus('');
       });
 
     closePictureModal();

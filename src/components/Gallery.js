@@ -1,9 +1,11 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import EmptyPage from './EmptyPage';
 
 const Gallery = ({ urlArray, setModalImgIdx, setShowPictureModal }) => {
   
   const handleClick = (urlIdx) => {
+    console.log(urlIdx);
     setModalImgIdx(urlIdx);
     setShowPictureModal(true);
   }
@@ -46,7 +48,7 @@ const Gallery = ({ urlArray, setModalImgIdx, setShowPictureModal }) => {
   
   return (
     <Container>
-        {rowsArray}
+        {rowsArray.length === 0 ? <EmptyPage /> : rowsArray}
     </Container>
   )
 }

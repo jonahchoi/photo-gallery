@@ -1,3 +1,12 @@
+body {
+  background-color: #ecf0f1;
+  font-family: 'Tai Heritage Pro', serif;
+  font-size: 1.5rem;
+}
+.header {
+  position: absolute;
+  left: 20%;
+}
 .custom-col {
   background-position: center;
   background-repeat: no-repeat;
@@ -6,7 +15,7 @@
   padding-bottom: 30%;
   margin: 1.66%;
 }
-.custom-btn {
+.on-screen-button {
   position: fixed;
   bottom: 30px;
   right: 30px;
@@ -28,4 +37,24 @@
 
 .dropdown-toggle::after{
   display: none !important;
+}
+.add-image-tooltip {
+  position: fixed;
+  bottom: 45px;
+  right: 100px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    left: 10px;
+  }
+  .on-screen-button {
+    bottom: 15px;
+    right: 15px;
+    font-size: 1rem;
+  }
+  .add-image-tooltip {
+    bottom: 20px;
+    right: 75px;
+  }
 }
