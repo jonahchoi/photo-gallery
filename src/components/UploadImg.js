@@ -12,11 +12,10 @@ const UploadImg = ({ setImgSrc }) => {
     setShowModal(false);
     setImgSrc(imgFile);
   }
-  
   return (
     <>
       <Button 
-        className='custom-btn' 
+        className='on-screen-button' 
         size='lg' 
         onClick={()=> setShowModal(true)}
       >
