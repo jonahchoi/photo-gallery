@@ -21,7 +21,11 @@ const UploadImg = ({ setImgSrc }) => {
       >
         +
       </Button>
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal 
+        show={showModal} 
+        onHide={handleClose} 
+        data-testid='addImageModal'
+      >
         <Modal.Header closeButton>
           <Modal.Title>
             Upload an Image
@@ -38,7 +42,8 @@ const UploadImg = ({ setImgSrc }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button 
-            onClick={handleSubmit}>
+            onClick={handleSubmit}
+            aria-label='submit button to upload'>
             Upload
           </Button>
         </Modal.Footer>

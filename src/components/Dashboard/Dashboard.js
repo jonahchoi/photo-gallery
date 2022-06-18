@@ -1,16 +1,20 @@
 import React, { useState } from 'react'
-import useStorage from '../hooks/useStorage';
-import Gallery from './Gallery'
-import LoadingSpinner from './LoadingSpinner';
-import PictureModal from './PictureModal';
-import UploadImg from './UploadImg'
+import useStorage from '../../hooks/useStorage';
+import Gallery from '../Gallery/Gallery'
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import PictureModal from '../PictureModal/PictureModal';
+import UploadImg from '../UploadImg/UploadImg'
 
 /* 
-  Todo/Possible changes
-  1. Fix kebab button
-  2. Add buttons for scrolling picture modal
-  3. Add image preview before "posting"
-  4. Check file to make sure its an image?
+  Future Todo/Possible changes
+  1. Add testing
+  2. Fix kebab button
+  3. Add seperate buttons for scrolling picture modal
+  4. Add image preview before "posting"
+  5. Check file to make sure its an image?
+  6. Make delete button red 
+  7. Add loading images functionality, instead of loading all images at once
+  8. Seperate accounts and login page -> instagram clone
 */
 const Dashboard = () => {
   
@@ -20,7 +24,7 @@ const Dashboard = () => {
   const [ urlArray, setImgSrc ] = useStorage([], setLoadSpinnerStatus);
 
   return (
-    <div className='text-center'>
+    <div data-testid='dashboard' className='text-center'>
       <div className='position-sticky border-bottom' style={{minHeight: '45px'}}>
         <h1 className='header' style={{fontSize: "2rem", fontFamily: 'Fascinate'}}>Photo Real</h1>
       </div>
@@ -34,6 +38,7 @@ const Dashboard = () => {
       />
       <PictureModal 
         modalImgIdx={modalImgIdx} 
+        setModalImgIdx={setModalImgIdx}
         urlArray={urlArray} 
         showPictureModal={showPictureModal} 
         setShowPictureModal={setShowPictureModal} 

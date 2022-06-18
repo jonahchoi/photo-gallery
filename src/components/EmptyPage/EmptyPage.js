@@ -1,10 +1,8 @@
 import React from 'react'
-import { Image } from 'react-bootstrap'
-import UploadImg from './UploadImg'
 
 const EmptyPage = () => {
   return (
-    <div>
+    <div data-testid='emptypage'>
       <p style={{fontSize: '2rem', fontWeight:'600', paddingTop: '4rem'}}>
         <i className="bi bi-camera"></i>
         <br />
