@@ -1,22 +1,20 @@
 import { deleteDoc, doc } from 'firebase/firestore';
 import { deleteObject, ref } from 'firebase/storage';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Carousel, Dropdown, Image, Modal } from 'react-bootstrap'
 import { appFirestore, appStorage } from '../../firebase/config';
 
 const PictureModal = ({ modalImgIdx, setModalImgIdx, urlArray, showPictureModal, setShowPictureModal, setLoadSpinnerStatus }) => {
   let carouselArray = [];
-  if(urlArray){
-    for(let idx = 0; idx < urlArray.length; idx++){
-      carouselArray.push(
-        <Carousel.Item key={idx}>
-          <Image 
-            style={{width: '100%', maxHeight: '90vh'}} 
-            src={urlArray[idx].url} 
-          />
-        </Carousel.Item>
-      );
-    }
+  for(let idx = 0; idx < urlArray?.length; idx++){
+    carouselArray.push(
+      <Carousel.Item key={idx}>
+        <Image 
+          style={{width: '100%', maxHeight: '90vh'}} 
+          src={urlArray[idx].url} 
+        />
+      </Carousel.Item>
+    );
   }
 
   const closePictureModal = () => {
@@ -43,7 +41,6 @@ const PictureModal = ({ modalImgIdx, setModalImgIdx, urlArray, showPictureModal,
   }
 
   const downloadImage = (idx) => {
-
     const xhr = new XMLHttpRequest();
     xhr.responseType = 'blob';
     xhr.onload = (event) => {
@@ -80,6 +77,7 @@ const PictureModal = ({ modalImgIdx, setModalImgIdx, urlArray, showPictureModal,
         indicators={false}
         wrap={false}
         onSelect={(idx)=>setModalImgIdx(idx)}
+        data-testid='carousel'
       >
         {carouselArray}
       </Carousel>
@@ -88,7 +86,7 @@ const PictureModal = ({ modalImgIdx, setModalImgIdx, urlArray, showPictureModal,
         align='end'
         drop='up'
       >
-        <Dropdown.Toggle>
+        <Dropdown.Toggle id='drop-toggle' aria-label='dropdown toggle button'>
           <i className="bi bi-three-dots-vertical" />
         </Dropdown.Toggle>
         <Dropdown.Menu>

@@ -1,20 +1,19 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import EmptyPage from './EmptyPage';
+import EmptyPage from '../EmptyPage/EmptyPage';
 
 const Gallery = ({ urlArray, setModalImgIdx, setShowPictureModal }) => {
   
   const handleClick = (urlIdx) => {
-    console.log(urlIdx);
     setModalImgIdx(urlIdx);
     setShowPictureModal(true);
   }
   
   let rowsArray = [];
-  for(let idx = 0; idx < urlArray.length; idx+=3){
+  for(let idx = 0; idx < urlArray?.length; idx+=3){
     
     rowsArray.push(
-      <Row key={idx} xs={3}>
+      <Row key={idx} xs={3} data-testid='gallery-row'>
         <Col 
           className='custom-col' 
           onClick={()=> handleClick(idx)} 
@@ -47,7 +46,7 @@ const Gallery = ({ urlArray, setModalImgIdx, setShowPictureModal }) => {
   }
   
   return (
-    <Container>
+    <Container data-testid='gallery'>
         {rowsArray.length === 0 ? <EmptyPage /> : rowsArray}
     </Container>
   )

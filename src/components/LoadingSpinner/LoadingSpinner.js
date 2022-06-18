@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProgressBar, Spinner } from 'react-bootstrap'
+import { Spinner } from 'react-bootstrap'
 
 const LoadingSpinner = ({loadSpinnerStatus}) => {
 
@@ -8,7 +8,13 @@ const LoadingSpinner = ({loadSpinnerStatus}) => {
   return (
     <>
       {loadSpinnerStatus ? 
-        <Spinner animation='border' role='load-status' variant={variantType}>
+        <Spinner 
+          animation='border' 
+          role='load-status' 
+          variant={variantType}
+          data-testid='loading-spinner'
+          className='hi'
+        >
           <span className='visually-hidden'>Loading...</span>
         </Spinner>
         : ''
